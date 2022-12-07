@@ -23,6 +23,10 @@ Compress-Archive publish\* publish.zip -Force
 az webapp deployment source config-zip --src .\publish.zip -n "$($envName)-app-0" -g $rgName
 az webapp deployment source config-zip --src .\publish.zip -n "$($envName)-app-1" -g $rgName
 az webapp deployment source config-zip --src .\publish.zip -n "$($envName)-app-2" -g $rgName
+
+curl "https://$($envName)-app-0.azurewebsites.net/health" -UseBasicParsing
+curl "https://$($envName)-app-1.azurewebsites.net/health" -UseBasicParsing
+curl "https://$($envName)-app-2.azurewebsites.net/health" -UseBasicParsing
  
 ```
 

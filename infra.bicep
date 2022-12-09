@@ -49,7 +49,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   properties: {
     reserved: true
     perSiteScaling: true
-    targetWorkerCount: 1
+    targetWorkerCount: 3
     zoneRedundant: true
   }
   sku: {
@@ -66,6 +66,7 @@ resource appService 'Microsoft.Web/sites@2020-06-01' = [ for i in range(0, 3): {
     serverFarmId: appServicePlan.id
     siteConfig: {
       linuxFxVersion: linuxFxVersion
+      numberOfWorkers: 1
       appSettings: [
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
